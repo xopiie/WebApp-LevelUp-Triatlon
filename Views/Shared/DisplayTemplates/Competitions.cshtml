@@ -1,0 +1,29 @@
+﻿@model Competitions
+
+<tr>
+    <th scope="row">@Model.ID_Competition</th>
+    <td>@Model.CompetitionType</td>
+    <td>@Model.Gender</td>
+    <td>@Model.Location</td>
+    <td>@Model.CompetitionYear</td>
+    <td>
+        @{
+            <a class="btn btn-outline-info" asp-action="ResultsByCompetition" asp-route-id="@Model.ID_Competition">Results</a>
+        }
+    </td>
+    @if (User.Identity.IsAuthenticated)
+    {
+<th scope="col">
+    @if (Model.Liked)
+    {
+    <a class="btn btn-danger" asp-action="LikeCompetition" asp-route-id="@Model.ID_Competition">💜</a>
+    }
+    else
+    {
+<a class="btn btn-outline-danger" asp-action="LikeCompetition" asp-route-id="@Model.ID_Competition">🤍</a>
+    }
+</th>
+
+    }
+</tr>
+

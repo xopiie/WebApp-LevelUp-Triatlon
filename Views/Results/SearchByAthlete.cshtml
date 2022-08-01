@@ -1,0 +1,22 @@
+﻿@model SearchAthlete
+@{
+    ViewData["Title"] = "Search by athlete name";
+}
+
+<div align="center">
+    <h1 class="display-4">@ViewData["Title"]</h1>
+</div>
+
+
+<div align="center">
+    @using (Html.BeginForm("SearchByAthlete", "Results", FormMethod.Post))
+    {
+        <p>
+            @Html.LabelFor(x => x.searchTerm)
+            @Html.TextBoxFor(x => x.searchTerm)
+            <input type="submit" class="btn btn-outline-primary" value="🔎" />
+            <br />
+            @Html.ValidationMessageFor(x => x.searchTerm, null, new { @class = "text-danger" })
+        </p>
+    }
+</div>

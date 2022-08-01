@@ -1,0 +1,97 @@
+﻿@model IEnumerable<Results>
+@{
+    ViewData["Title"] = "Results";
+}
+
+<h1 class="display-4">@ViewData["Title"]</h1>
+
+<div align="right">
+    @{
+        if (ViewData["SearchbyAthlete"].ToString() != "true")
+        {
+            @using (Html.BeginForm("Search", "Results", FormMethod.Post))
+            {
+                <p>
+                    @Html.TextBox("searchString")
+                    @Html.Hidden("competitionID", ViewData["ID_Competition"])
+                    <input type="submit" class="btn btn-outline-primary" value="🔎" />
+                </p>
+            }
+        }
+    }
+</div>
+
+<div class="accordion accordion-flush" id="statistika">
+    <div class="accordion-item">
+        <h4 class="accordion-header" id="headingOne">
+            <button class="accordion-button text-white bg-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Statistika
+            </button>
+        </h4>
+        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#statistika">
+            <div class="accordion-body">
+                <div>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Number of results</th>
+                                <th scope="col">Longest time (swim)</th>
+                                <th scope="col">Longest time (bike)</th>
+                                <th scope="col">Longest time (run)</th>
+                                <th scope="col">Shortest time (swim)</th>
+                                <th scope="col">Shortest time (bike)</th>
+                                <th scope="col">Shortest time (run)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row" class="text-info">@ViewData["ResultsNumber"]</th>
+                                <td class="text-danger">@ViewData["WorstTimeSwim"]</td>
+                                <td class="text-danger">@ViewData["WorstTimeBike"]</td>
+                                <td class="text-danger">@ViewData["WorstTimeRun"]</td>
+                                <td class="text-success">@ViewData["BestTimeSwim"]</td>
+                                <td class="text-success">@ViewData["BestTimeBike"]</td>
+                                <td class="text-success">@ViewData["BestTimeRun"]</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Athlete name</th>
+                <th scope="col">Age</th>
+                <th scope="col">Country, State</th>
+                <th scope="col">Profession</th>
+                <th scope="col">Age category</th>
+                <th scope="col">Divisiom</th>
+                <th scope="col">Division rank</th>
+                <th scope="col">Gender rank</th>
+                <th scope="col">Overall rank</th>
+                <th scope="col">BIB</th>
+                <th scope="col">Time 1</th>
+                <th scope="col">Time 2</th>
+                <th scope="col">Swim time</th>
+                <th scope="col">Swim distance</th>
+                <th scope="col">Bike time</th>
+                <th scope="col">Bike distance</th>
+                <th scope="col">Run time</th>
+                <th scope="col">Run distance</th>
+                <th scope="col">Overall time</th>
+                <th scope="col">Coments</th>
+            </tr>
+        </thead>
+        <tbody>
+            @Html.DisplayForModel()
+        </tbody>
+    </table>
+</div>
+<br />
+<br />

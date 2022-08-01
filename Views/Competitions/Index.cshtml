@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Competitions>
+@{
+    ViewData["Title"] = "Competitions";
+}
+
+<h1 class="display-4">@ViewData["Title"]</h1>
+<div align="right">
+    @using (Html.BeginForm("Search", "Competitions", FormMethod.Post))
+    {
+        <p>
+            @Html.TextBox("searchString")
+            <input type="submit" class="btn btn-outline-primary" value="🔎" />
+        </p>
+    }
+</div>
+<div>
+    <table class="table table-hover" align="center">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Competition type</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Location</th>
+                <th scope="col">Year</th>
+                <th scope="col">Results</th>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <th scope="col">Like</th>
+
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @Html.DisplayForModel()
+        </tbody>
+    </table>
+</div>
